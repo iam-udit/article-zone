@@ -1,0 +1,29 @@
+/rules {
+    # Cache HTML pages for the blog
+    /0030 {
+        /glob "/content/aemblog/*.html"
+        /type "allow"
+    }
+    # Cache DAM assets (images, videos, documents) for the blog
+    /0031 {
+        /glob "/content/dam/aemblog/**"
+        /type "allow"
+    }
+    # Cache client libraries for the blog
+    /0032 {
+        /glob "/etc.clientlibs/aemblog/**"
+        /type "allow"
+    }
+    # Example: Deny caching for authoring related paths or dynamic content not meant for caching
+    # /0099 { /glob "/some/dynamic/path*" /type "deny" }
+}
+
+# Configure statfileslevel (adjust based on content depth)
+/statfileslevel "2" # Example: /content/aemblog -> level 0, /content/aemblog/us -> level 1, /content/aemblog/us/en -> level 2
+
+# Configure invalidation
+/invalidate {
+    /0000 { /glob "*" /type "deny" }
+    /0001 { /glob "*.html" /type "allow" } # Allow invalidation of HTML files
+    # Add other specific file types if needed
+}

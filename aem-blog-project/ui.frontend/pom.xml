@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>aem-blog-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>aem-blog-project.ui.frontend</artifactId>
+    <packaging>pom</packaging> <!-- This module is typically not a JAR/Bundle -->
+
+    <name>AEM Blog Project - UI Frontend</name>
+    <description>UI frontend module for AEM Blog Project (Webpack, etc.)</description>
+
+    <build>
+        <plugins>
+            <!-- Add frontend-maven-plugin configuration here if needed -->
+        </plugins>
+    </build>
+</project>

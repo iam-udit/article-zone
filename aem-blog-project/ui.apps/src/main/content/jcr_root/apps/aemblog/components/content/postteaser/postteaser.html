@@ -1,0 +1,23 @@
+<sly data-sly-use.post="com.adobe.cq.wcm.core.components.models.ListItem"
+     data-sly-use.pageManager="com.day.cq.wcm.api.PageManager"
+     data-sly-use.cfModel="com.adobe.cq.dam.cfm.ContentFragment"></sly>
+
+<sly data-sly-test.postPage="${pageManager.getPage(post.path)}"></sly>
+<sly data-sly-test.cf="${postPage.contentResource.adaptTo(cfModel)}"></sly>
+
+<article class="cmp-postteaser" data-sly-if="${cf}">
+    <a class="cmp-postteaser__link" href="${post.URL}">
+        <h3 class="cmp-postteaser__title">${cf.elements.title.value}</h3>
+        <div class="cmp-postteaser__description" data-sly-test="${cf.elements.body.value}">
+            ${cf.elements.body.value @ context='html'} <!-- Assuming body is rich text -->
+        </div>
+        <span class="cmp-postteaser__publication-date" data-sly-test="${cf.elements.publicationDate.value}">
+            ${cf.elements.publicationDate.value @ format='MMMM dd, yyyy'}
+        </span>
+    </a>
+</article>
+
+<!-- Fallback or placeholder if content fragment is not as expected -->
+<div data-sly-if="${!cf}">
+    <p>Error: Could not load post teaser for path: ${post.path}</p>
+</div>

@@ -1,0 +1,25 @@
+# Default setup often denies all initially
+# /0001 { /type "deny" /glob "*" }
+
+# Allow essential AEM paths (examples, might need adjustment based on archetype version)
+/0010 { /type "allow" /glob "GET /libs/granite/csrf/token.json" } # CSRF token
+/0011 { /type "allow" /glob "GET /libs/cq/common/config/*" }
+/0012 { /type "allow" /glob "GET /libs/cq/core/content/login*" }
+# Add more specific /libs paths if needed by components anonymously
+
+# Allow blog content paths
+/0100 { /type "allow" /glob "GET /content/aemblog*" }
+/0101 { /type "allow" /glob "HEAD /content/aemblog*" }
+/0102 { /type "allow" /glob "GET /content/dam/aemblog*" } # DAM assets (images, etc.)
+/0103 { /type "allow" /glob "HEAD /content/dam/aemblog*" }
+
+# Allow client library paths (adjust if ui.frontend produces different base paths)
+/0104 { /type "allow" /glob "GET /etc.clientlibs/aemblog/*" }
+/0105 { /type "allow" /glob "HEAD /etc.clientlibs/aemblog/*" }
+
+# Deny common sensitive paths (examples)
+/0200 { /type "deny" /glob "GET /system/*" }
+/0201 { /type "deny" /glob "GET /bin/*" }
+/0202 { /type "deny" /glob "GET /*.infinity.json" }
+/0203 { /type "deny" /glob "GET /*.tidy.json" }
+# Add more deny rules as per security best practices

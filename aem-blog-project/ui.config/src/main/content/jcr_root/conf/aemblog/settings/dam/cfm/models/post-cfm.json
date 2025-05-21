@@ -1,0 +1,27 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "Post Model",
+  "jcr:description": "Content Fragment Model for Blog Posts",
+  "status": "enabled",
+  "elements": {
+    "title": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Title", "name": "title", "required": true },
+    "slug": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Slug", "name": "slug" },
+    "body": { "jcr:primaryType": "nt:unstructured", "valueType": "text-multi", "label": "Body", "name": "body", "metaType": "rich-text" },
+    "quote": { "jcr:primaryType": "nt:unstructured", "valueType": "text-multi", "label": "Quote", "name": "quote" },
+    "authorReference": { "jcr:primaryType": "nt:unstructured", "valueType": "fragment-reference", "label": "Author Reference", "name": "authorReference", "fragmentPath": "/content/dam/aemblog/authors" },
+    "publicationDate": { "jcr:primaryType": "nt:unstructured", "valueType": "date", "label": "Publication Date", "name": "publicationDate" },
+    "tagsReference": { "jcr:primaryType": "nt:unstructured", "valueType": "fragment-reference", "label": "Tags", "name": "tagsReference", "fragmentPath": "/content/dam/aemblog/tags", "allowMultiple": true },
+    "categoryReference": { "jcr:primaryType": "nt:unstructured", "valueType": "fragment-reference", "label": "Category", "name": "categoryReference", "fragmentPath": "/content/dam/aemblog/categories" },
+    "featuredImage": { "jcr:primaryType": "nt:unstructured", "valueType": "reference", "label": "Featured Image", "name": "featuredImage", "referenceType": "dam" },
+    "isPublished": { "jcr:primaryType": "nt:unstructured", "valueType": "boolean", "label": "Is Published?", "name": "isPublished" },
+    "viewCount": { "jcr:primaryType": "nt:unstructured", "valueType": "number", "label": "View Count", "name": "viewCount" },
+    "legacyId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy Post ID", "name": "legacyId" },
+    "legacyUserId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy User ID", "name": "legacyUserId" }
+  },
+  "modelProperties": {
+     "jcr:primaryType": "nt:unstructured", 
+     "modelPath": "/conf/aemblog/settings/dam/cfm/models/post-cfm", 
+     "title": "Post Model", 
+     "description": "Content Fragment Model for Blog Posts"
+  }
+}

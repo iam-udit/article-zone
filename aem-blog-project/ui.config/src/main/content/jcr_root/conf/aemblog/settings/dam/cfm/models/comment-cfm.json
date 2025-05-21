@@ -1,0 +1,21 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "Comment Model",
+  "jcr:description": "Content Fragment Model for Comments",
+  "status": "enabled",
+  "elements": {
+    "postReference": { "jcr:primaryType": "nt:unstructured", "valueType": "fragment-reference", "label": "Post Reference", "name": "postReference", "fragmentPath": "/content/dam/aemblog/posts", "required": true },
+    "authorName": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Author Name", "name": "authorName", "required": true },
+    "authorEmail": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Author Email", "name": "authorEmail" },
+    "commentBody": { "jcr:primaryType": "nt:unstructured", "valueType": "text-multi", "label": "Comment Body", "name": "commentBody", "required": true },
+    "submissionDate": { "jcr:primaryType": "nt:unstructured", "valueType": "date", "label": "Submission Date", "name": "submissionDate" },
+    "isApproved": { "jcr:primaryType": "nt:unstructured", "valueType": "boolean", "label": "Is Approved?", "name": "isApproved", "default": false },
+    "legacyId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy Comment ID", "name": "legacyId" }
+  },
+  "modelProperties": {
+     "jcr:primaryType": "nt:unstructured",
+     "modelPath": "/conf/aemblog/settings/dam/cfm/models/comment-cfm",
+     "title": "Comment Model",
+     "description": "Content Fragment Model for Comments"
+  }
+}

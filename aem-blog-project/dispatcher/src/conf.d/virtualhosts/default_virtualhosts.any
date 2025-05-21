@@ -1,0 +1,3 @@
+# List of virtual hosts for this farm
+"www.aemblog.com"
+# "localhost" # For local testing if Dispatcher is set up locally

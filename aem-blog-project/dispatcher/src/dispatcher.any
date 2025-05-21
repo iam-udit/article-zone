@@ -1,0 +1,4 @@
+# Example dispatcher.any
+/farms {
+    $include "conf.d/enabled_farms/default.farm"
+}

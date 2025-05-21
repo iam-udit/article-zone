@@ -1,0 +1,28 @@
+<!--/* Standard Page Specific Markup */-->
+<sly data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page"></sly>
+<!DOCTYPE HTML>
+<html lang="${page.language}" data-sly-use.head="head.html">
+    <head data-sly-call="${head.head @ page = page}"></head>
+    <body class="${page.cssClassNames}">
+        <sly data-sly-include="body.html"></sly>
+    </body>
+</html>
+
+<!-- Placeholder for head.html -->
+<template data-sly-template.head="${@ page}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${page.title}</title>
+    <sly data-sly-call="${clientlib.all @ categories='aemblog.base'}"></sly>
+</template>
+
+<!-- Placeholder for body.html -->
+<template data-sly-template.body>
+    <div class="root">
+        <div data-sly-resource="${'header' @ resourceType='aemblog/components/structure/header'}"></div>
+        <div class="responsivegrid" data-sly-resource="${'responsivegrid' @ resourceType='wcm/foundation/components/responsivegrid'}">
+            <!-- Standard page content components go here -->
+        </div>
+        <div data-sly-resource="${'footer' @ resourceType='aemblog/components/structure/footer'}"></div>
+    </div>
+</template>

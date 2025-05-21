@@ -1,0 +1,14 @@
+<sly data-sly-use.postList="com.example.aemblog.core.models.PostListModel"
+     data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"></sly>
+
+<div data-sly-test="${postList.empty}" data-sly-call="${placeholderTemplate.placeholder @ isEmpty=true, classAppend='cmp-postlist'}"></div>
+
+<div data-sly-test="${!postList.empty}" class="cmp-postlist">
+    <ul class="cmp-postlist__items">
+        <li class="cmp-postlist__item" data-sly-repeat.post="${postList.posts}">
+            <!-- Adapt 'post' resource to PostTeaserModel and render teaser -->
+            <sly data-sly-resource="${post.path @ resourceType='aemblog/components/content/postteaser', wcmmode='disabled'}"></sly>
+        </li>
+    </ul>
+    <!-- Pagination can be added here -->
+</div>

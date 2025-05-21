@@ -1,0 +1,17 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "Category Model",
+  "jcr:description": "Content Fragment Model for Categories",
+  "status": "enabled",
+  "elements": {
+    "name": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Name", "name": "name", "required": true },
+    "description": { "jcr:primaryType": "nt:unstructured", "valueType": "text-multi", "label": "Description", "name": "description" },
+    "legacyId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy Category ID", "name": "legacyId" }
+  },
+  "modelProperties": {
+     "jcr:primaryType": "nt:unstructured", 
+     "modelPath": "/conf/aemblog/settings/dam/cfm/models/category-cfm", 
+     "title": "Category Model", 
+     "description": "Content Fragment Model for Categories"
+  }
+}

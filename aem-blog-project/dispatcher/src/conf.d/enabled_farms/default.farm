@@ -1,0 +1,71 @@
+# Example default.farm structure (add or uncomment sections as needed)
+# $include "../../../conf/dispatcher.any" # If there's a global dispatcher.any
+
+/myBlogFarm { # Name of the farm
+    # Reference client headers - ensure this file exists or is created
+    # $include "../clientheaders/default_clientheaders.any" 
+    # For default_clientheaders.any, common practice is to allow pass-through of standard headers
+    # and deny/filter sensitive ones. Example content for default_clientheaders.any:
+    # {
+    #   $include "/etc/httpd/conf.d/dispatcher_vhost.conf" # Path to actual client headers if managed centrally
+    #   Alternatively, define directly:
+    #   "Host"
+    #   "User-Agent"
+    #   "Accept-Language"
+    #   ... allow more as needed
+    # }
+
+
+    $include "../virtualhosts/default_virtualhosts.any" # Will be populated with www.aemblog.com
+    
+    # Define your render instances (AEM Publish)
+    /renders {
+        /render01 {
+            /hostname "localhost" # Replace with your actual publish hostname
+            /port "4503"          # Replace with your actual publish port
+        }
+        # /render02 { /hostname "publish2.example.com" /port "4503" }
+    }
+
+    /filter {
+        $include "../filters/default_filters.any" # Includes the filter rules we defined
+    }
+
+    /cache {
+        /docroot "/opt/dispatcher/cache/publish" # Example docroot, set to your actual cache docroot for this farm
+        
+        /statfileslevel "2" # From default_cache.any, can be here or included
+        
+        /rules {
+            $include "../cache/default_cache.any" # Includes the cache rules we defined
+        }
+
+        /invalidate {
+            $include "../cache/default_cache.any" # Invalidation rules are also in default_cache.any
+        }
+        
+        # Allow serving of authorized items (for permission-sensitive caching)
+        /allowedClients {
+            /0001 { /glob "*" /type "deny" } # Deny all by default
+            # /0002 { /glob "127.0.0.1" /type "allow" } # Allow localhost (e.g., for health checks)
+        }
+    }
+    
+    # Health check for renders
+    /health_check {
+        /url "/system/health?tags=shallow" # AEM Health Check URL
+    }
+
+    # Statistics (optional, but useful)
+    # /statistics {
+    #    /categories {
+    #        /html { /glob "*.html" }
+    #        /others { /glob "*" }
+    #    }
+    # }
+
+    # Session management (if using sticky sessions)
+    # /sessionmanagement {
+    #    /directory "/opt/dispatcher/sessions" # Path to session store
+    # }
+}

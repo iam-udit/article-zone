@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cqworkflow="http://www.day.com/jcr/cq/workflow/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        jcr:title="AEM Blog Post Approval Workflow"
+        sling:resourceType="cq/workflow/components/model/page"
+        cq:template="/libs/cq/workflow/templates/model"
+        cq:workflowDetailsPage="/mnt/overlay/dam/cfm/admin/content/common/details.html?fragment=${payload}">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <start
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Start"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData jcr:primaryType="nt:unstructured"/>
+            </start>
+            <reviewstep
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Review Post"
+                sling:resourceType="cq/workflow/components/model/participant">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PARTICIPANT="aemblog/blog-admins"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </reviewstep>
+            <setapprovedflag
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Set Approved Flag"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.example.aemblog.core.workflow.SetApprovedFlagProcess"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </setapprovedflag>
+            <end
+                jcr:primaryType="nt:unstructured"
+                jcr:title="End"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData jcr:primaryType="nt:unstructured"/>
+            </end>
+        </flow>
+        <nodemeta0
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Start"
+            sling:resourceType="cq/workflow/components/model/process"
+            type="START"/>
+        <nodemeta1
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Review Post"
+            sling:resourceType="cq/workflow/components/model/participant"
+            assignTo="aemblog/blog-admins"
+            type="PARTICIPANT"/>
+        <nodemeta2
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Set Approved Flag"
+            sling:resourceType="cq/workflow/components/model/process"
+            PROCESS="com.example.aemblog.core.workflow.SetApprovedFlagProcess"
+            PROCESS_ARGS=""
+            type="PROCESS"/>
+        <nodemeta3
+            jcr:primaryType="nt:unstructured"
+            jcr:title="End"
+            sling:resourceType="cq/workflow/components/model/process"
+            type="END"/>
+    </jcr:content>
+</jcr:root>

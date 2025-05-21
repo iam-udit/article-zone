@@ -1,0 +1,16 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "Tag Model",
+  "jcr:description": "Content Fragment Model for Tags",
+  "status": "enabled",
+  "elements": {
+    "name": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Name", "name": "name", "required": true },
+    "legacyId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy Tag ID", "name": "legacyId" }
+  },
+  "modelProperties": {
+     "jcr:primaryType": "nt:unstructured", 
+     "modelPath": "/conf/aemblog/settings/dam/cfm/models/tag-cfm", 
+     "title": "Tag Model", 
+     "description": "Content Fragment Model for Tags"
+  }
+}

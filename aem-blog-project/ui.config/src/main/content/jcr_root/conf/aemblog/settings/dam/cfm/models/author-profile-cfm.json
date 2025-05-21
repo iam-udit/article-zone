@@ -1,0 +1,19 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "Author Profile Model",
+  "jcr:description": "Content Fragment Model for Author Profiles",
+  "status": "enabled",
+  "elements": {
+    "name": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Name", "name": "name", "required": true },
+    "email": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Email", "name": "email" },
+    "about": { "jcr:primaryType": "nt:unstructured", "valueType": "text-multi", "label": "About", "name": "about" },
+    "avatarPath": { "jcr:primaryType": "nt:unstructured", "valueType": "reference", "label": "Avatar Image", "name": "avatarPath", "referenceType": "dam" },
+    "legacyUserId": { "jcr:primaryType": "nt:unstructured", "valueType": "text-single", "label": "Legacy User ID", "name": "legacyUserId" }
+  },
+  "modelProperties": {
+     "jcr:primaryType": "nt:unstructured", 
+     "modelPath": "/conf/aemblog/settings/dam/cfm/models/author-profile-cfm", 
+     "title": "Author Profile Model", 
+     "description": "Content Fragment Model for Author Profiles"
+  }
+}
