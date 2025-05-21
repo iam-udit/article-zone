@@ -13,22 +13,56 @@
 
     <artifactId>aem-blog-project.ui.content</artifactId>
     <packaging>content-package</packaging>
+    <name>AEM Blog Project - UI Content Package</name>
+    <description>UI Content package for AEM Blog Project, containing initial site content, templates, CFMs, and DAM assets.</description>
 
-    <name>AEM Blog Project - UI Content</name>
-    <description>UI content package for AEM Blog Project</description>
+    <dependencies>
+        <!-- AEM SDK API (Uber Jar) -->
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-sdk-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Core bundle if any content depends on it directly (rare for ui.content) -->
+        <!-- <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>aem-blog-project.core</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency> -->
+
+        <!-- ui.apps package as a dependency if this package installs things that depend on ui.apps (e.g. template pointing to a component) -->
+        <!-- This ensures ui.apps is installed before ui.content if deployed together via 'all' package -->
+         <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>aem-blog-project.ui.apps</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+            <scope>provided</scope> <!-- Scope is provided because it's part of the 'all' package -->
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>filevault-package-maven-plugin</artifactId>
-                <version>1.1.6</version>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>com.example</group>
+                    <group>com.example.aemblog</group> <!-- Content package group -->
                     <name>aem-blog-project.ui.content</name>
-                    <packageType>content</packageType>
-                    <path>/content/aemblog</path> <!-- Adjust path as needed -->
+                    <packageType>content</packageType> <!-- Typically 'content' or 'mixed' -->
+                    <accessControlHandling>merge</accessControlHandling>
+                     <validatorsSettings>
+                        <jackrabbit-nodetypes>
+                            <options>
+                                <!-- Allow typical content paths -->
+                                <validRoots>/content,/conf</validRoots>
+                            </options>
+                        </jackrabbit-nodetypes>
+                    </validatorsSettings>
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                 </configuration>
             </plugin>
         </plugins>

@@ -13,22 +13,39 @@
 
     <artifactId>aem-blog-project.ui.config</artifactId>
     <packaging>content-package</packaging>
+    <name>AEM Blog Project - UI Config Package</name>
+    <description>UI Config package for AEM Blog Project, containing OSGi configurations</description>
 
-    <name>AEM Blog Project - UI Config</name>
-    <description>UI config package for AEM Blog Project</description>
+    <dependencies>
+        <!-- AEM SDK API (Uber Jar) -->
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-sdk-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>filevault-package-maven-plugin</artifactId>
-                <version>1.1.6</version>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>com.example</group>
+                    <group>com.example.aemblog</group> <!-- Content package group -->
                     <name>aem-blog-project.ui.config</name>
                     <packageType>application</packageType>
-                    <path>/apps/aemblog/osgiconfig</path> <!-- Adjust path as needed -->
+                    <accessControlHandling>merge</accessControlHandling>
+                    <validatorsSettings>
+                        <jackrabbit-nodetypes>
+                            <options>
+                                <!-- Allow typical /apps and /conf paths for OSGi configs -->
+                                <validRoots>/apps,/libs,/conf</validRoots>
+                            </options>
+                        </jackrabbit-nodetypes>
+                    </validatorsSettings>
+                    <!-- filterSource should point to the filter.xml in this module -->
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,0 +1,21 @@
+{
+  "name": "aem-blog-project-frontend",
+  "version": "1.0.0",
+  "description": "Client-side libraries for AEM Blog Project",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --mode development --output-path=../resources/clientlib-site/js && webpack --mode development --output-path=../resources/clientlib-site/css",
+    "build:prod": "webpack --mode production --output-path=../resources/clientlib-site/js && webpack --mode production --output-path=../resources/clientlib-site/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "mini-css-extract-plugin": "^2.6.0"
+  }
+}

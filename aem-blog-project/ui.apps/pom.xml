@@ -13,22 +13,85 @@
 
     <artifactId>aem-blog-project.ui.apps</artifactId>
     <packaging>content-package</packaging>
+    <name>AEM Blog Project - UI Apps Package</name>
+    <description>UI Apps package for AEM Blog Project, containing components, templates, and clientlibs under /apps</description>
 
-    <name>AEM Blog Project - UI Apps</name>
-    <description>UI apps package for AEM Blog Project</description>
+    <dependencies>
+        <!-- Core Bundle Dependency (to be embedded) -->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>aem-blog-project.core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- AEM SDK API (Uber Jar) - for any enums or constants used in JSPs/scripts if any -->
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-sdk-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- AEM Core WCM Components (Content Package - if needed as a subpackage) -->
+        <!-- Typically, Core Components are deployed globally or via 'all' package -->
+        <!-- However, if you need to overlay or ensure specific version, you might include it. -->
+        <!-- <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.content</artifactId>
+            <type>zip</type>
+            <scope>provided</scope> <!- Or 'compile' if embedding ->
+        </dependency> -->
+        <!-- <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.config</artifactId>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency> -->
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>filevault-package-maven-plugin</artifactId>
-                <version>1.1.6</version>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>com.example</group>
+                    <group>com.example.aemblog</group> <!-- Content package group -->
                     <name>aem-blog-project.ui.apps</name>
                     <packageType>application</packageType>
-                    <path>/apps/aemblog</path>
+                    <accessControlHandling>merge</accessControlHandling> <!-- or overwrite, ignore -->
+                    <validatorsSettings>
+                        <!-- Disable Jackrabbit node type validation for AEMaaCS compatibility -->
+                        <jackrabbit-nodetypes>
+                            <options>
+                                <validRoots>/apps,/libs,/var,/etc,/conf,/mnt</validRoots>
+                            </options>
+                        </jackrabbit-nodetypes>
+                    </validatorsSettings>
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>com.example</groupId>
+                            <artifactId>aem-blog-project.core</artifactId>
+                            <target>/apps/aemblog/install</target> <!-- Target path for core bundle -->
+                        </embedded>
+                        <!-- Example: Embed Core WCM Components if necessary
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.core</artifactId>
+                            <target>/apps/aemblog/install</target>
+                        </embedded>
+                        -->
+                    </embeddeds>
+                    <!-- Define any subPackages if needed -->
+                </configuration>
+            </plugin>
+
+            <!-- Optional: Maven Resources Plugin for filtering JCR paths in .content.xml -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
                 </configuration>
             </plugin>
         </plugins>

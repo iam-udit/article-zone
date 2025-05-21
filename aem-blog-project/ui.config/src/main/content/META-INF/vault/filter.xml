@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <!-- Defines the OSGi configurations specific to this project -->
+    <!-- These are typically for run modes (author, publish, common) -->
+    <!-- Example: /apps/aemblog/osgiconfig/config, /apps/aemblog/osgiconfig/config.author, etc. -->
+    <!-- Or if using /conf for OSGi configs: /conf/global/settings/osgiconfig/aemblog -->
+
+    <filter root="/apps/aemblog/osgiconfig">
+        <!-- Include all OSGi configurations under /apps/aemblog/osgiconfig -->
+        <!-- Adjust this root if your project stores OSGi configs elsewhere, e.g., /conf -->
+    </filter>
+
+    <!-- Example for /conf based OSGi configurations:
+    <filter root="/conf/aemblog/settings/osgiconfig">
+    </filter>
+    -->
+</workspaceFilter>

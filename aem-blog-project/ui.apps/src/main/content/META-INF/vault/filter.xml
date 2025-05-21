@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/aemblog">
+        <!-- Include everything under /apps/aemblog -->
+        <!-- More specific rules can be added here if needed -->
+        <!-- e.g., <exclude pattern="/apps/aemblog/some/excluded/path"/> -->
+    </filter>
+
+    <!-- Example: Include common OSGi configurations if deployed via /apps -->
+    <!-- <filter root="/apps/sling" /> -->
+    <!-- <filter root="/apps/cq" /> -->
+
+    <!-- Include run mode specific configurations for /apps -->
+    <!--
+    <filter root="/apps/aemblog/config.author"/>
+    <filter root="/apps/aemblog/config.publish"/>
+    <filter root="/apps/aemblog/config.dev"/>
+    -->
+</workspaceFilter>
